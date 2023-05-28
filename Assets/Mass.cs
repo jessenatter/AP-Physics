@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mass : MonoBehaviour
 {
@@ -48,9 +49,13 @@ public class Mass : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Pendulum")
-        { 
-            MoveByPendulum = P.MoveByPendulum;
-            rb.velocity = new Vector2(MoveByPendulum, 0);
+        {
+            if (P.holding == false)
+            {
+                MoveByPendulum = P.MoveByPendulum;
+                rb.velocity = new Vector2(MoveByPendulum, 0);
+                P.hit();
+            }
         }
 
         if (collision.gameObject.tag == "Ramp")
@@ -68,5 +73,13 @@ public class Mass : MonoBehaviour
         Frozen = false;
         rb.mass = 1f;
         rb.gravityScale = 1f;
+    }
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void test()
+    {
+        rb.velocity = new Vector2(-6,0);
     }
 }

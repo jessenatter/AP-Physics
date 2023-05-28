@@ -7,44 +7,47 @@ public class Pendulum : MonoBehaviour
 
     public float MoveByPendulum = 0;
     private float Angle = 0;
-    private bool holding = true;
-    private bool movingRight = false;
+    public bool holding = true;
     private float FinalAngle;
     private float Direction;
+
+    private enum State
+    {
+        NotYet,
+        Hit,
+    }
+
+    private State state;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = State.NotYet;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveByPendulum = FinalAngle * Direction;
-
-        if (Angle > 0)
+        switch (state)
         {
-            movingRight = false;
-            Direction = -1;
-        }
-        else
-        {
-            movingRight = true;
-            Direction = 1;
-        }
+            default:
+            case State.NotYet:
 
-        transform.rotation = Quaternion.Euler(Vector3.forward * Angle);
+                transform.rotation = Quaternion.Euler(Vector3.forward * Angle);
 
-        if(!holding)
-        {
-            if (movingRight == true)
-            {
-                Angle -= Time.deltaTime * 180;
-            }
-            
+                if (!holding)
+                {
+                   Angle += Time.deltaTime * 210 * -Direction ;
+                }
+
+                break;
+
+            case State.Hit:
+
+                transform.rotation = Quaternion.Euler(Vector3.forward * 0);
+
+                break;
         }
-        
     }
     public void PlusAngle()
     {
@@ -56,7 +59,25 @@ public class Pendulum : MonoBehaviour
     }
     public void Release()
     {
-        FinalAngle = Mathf.Abs(Angle);
+        FinalAngle = Angle;
+        
         holding = false;
+
+        if (FinalAngle < 0)
+        {
+            Direction = -1;
+        }
+        else
+        {
+            Direction = 1;
+        }
+
+        MoveByPendulum = (-FinalAngle) / 10f;
+
+        Debug.Log(MoveByPendulum);
+    }
+    public void hit()
+    {
+        state = State.Hit;
     }
 }
