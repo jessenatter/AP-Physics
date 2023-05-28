@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pendulum : MonoBehaviour
 {
 
     public float MoveByPendulum = 0;
-    private float Angle = 0;
+    public float Angle = 0;
     public bool holding = true;
     private float FinalAngle;
     private float Direction;
+    public Slider slider;
 
     private enum State
     {
@@ -28,6 +30,8 @@ public class Pendulum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         switch (state)
         {
             default:
@@ -35,9 +39,14 @@ public class Pendulum : MonoBehaviour
 
                 transform.rotation = Quaternion.Euler(Vector3.forward * Angle);
 
+                if(holding)
+                {
+                    Angle = slider.value * -1;
+                }
+
                 if (!holding)
                 {
-                   Angle += Time.deltaTime * 210 * -Direction ;
+                   Angle += Time.deltaTime * 210 * -Direction;
                 }
 
                 break;
@@ -49,14 +58,7 @@ public class Pendulum : MonoBehaviour
                 break;
         }
     }
-    public void PlusAngle()
-    {
-        Angle += 5;
-    }
-    public void MinusAngle()
-    {
-        Angle -= 5; 
-    }
+
     public void Release()
     {
         FinalAngle = Angle;
@@ -73,8 +75,6 @@ public class Pendulum : MonoBehaviour
         }
 
         MoveByPendulum = (-FinalAngle) / 10f;
-
-        Debug.Log(MoveByPendulum);
     }
     public void hit()
     {

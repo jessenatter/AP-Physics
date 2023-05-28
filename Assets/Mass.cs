@@ -11,8 +11,10 @@ public class Mass : MonoBehaviour
 
     private float MoveByPendulum = 0;
     private Pendulum P;
+    private Spring S;
 
     public GameObject Pendulum;
+    public GameObject Spring;
     private bool Frozen = true;
     
 
@@ -21,6 +23,7 @@ public class Mass : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         P = Pendulum.GetComponent<Pendulum>();
+        S = Spring.GetComponent<Spring>();
         Frozen = true;
     }
 
@@ -38,25 +41,12 @@ public class Mass : MonoBehaviour
 
     public void HitBySpring()
     {
-        rb.velocity = new Vector2(5, 0);
+        S.hit();
+        rb.velocity = new Vector2(S.SpringPower, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Spring")
-        {
-            HitBySpring();
-        }
-
-        if (collision.gameObject.tag == "Pendulum")
-        {
-            if (P.holding == false)
-            {
-                MoveByPendulum = P.MoveByPendulum;
-                rb.velocity = new Vector2(MoveByPendulum, 0);
-                P.hit();
-            }
-        }
 
         if (collision.gameObject.tag == "Ramp")
         {
@@ -68,6 +58,26 @@ public class Mass : MonoBehaviour
             P.Release();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Pendulum")
+        {
+            if (P.holding == false)
+            {
+                MoveByPendulum = P.MoveByPendulum;
+                rb.velocity = new Vector2(MoveByPendulum, 0);
+                P.hit();
+            }
+        }
+        if (collision.gameObject.tag == "Spring")
+        {
+            HitBySpring();
+        }
+
+
+    }
+
     public void Unfreeze()
     {
         Frozen = false;
