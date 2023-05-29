@@ -7,9 +7,8 @@ public class Glove : MonoBehaviour
 {
     public Slider slider;
     private float move;
-    private float grabbed;
+    private float grabbed = 0f;
     public GameObject spring;
-    //mopve max = 2
     
     // Start is called before the first frame update
     void Start()
@@ -20,14 +19,10 @@ public class Glove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grabbed = spring.transform.position.x + 5.28f;
-        move = slider.value / 0.35f * -2;
-        transform.position = new Vector2(grabbed + move, transform.position.y);
-    }
-
-    public void hit()
-    {
-        transform.position = new Vector2(grabbed, transform.position.y);
-        Debug.Log("hit");
+        move = spring.transform.position.x + 5.19f;
+        grabbed = (slider.value / 0.35f) * -2f;
+        transform.position = new Vector2(move + grabbed, spring.transform.position.y);
     }
 }
+
+
