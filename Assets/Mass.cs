@@ -12,18 +12,22 @@ public class Mass : MonoBehaviour
     private float MoveByPendulum = 0;
     private Pendulum P;
     private Spring S;
+    private Glove G;
 
     public GameObject Pendulum;
     public GameObject Spring;
-    private bool Frozen = true;
-    
+    public GameObject Glove;
 
+    private bool Frozen = true;
+
+    private bool hasHit;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         P = Pendulum.GetComponent<Pendulum>();
         S = Spring.GetComponent<Spring>();
+        G = Glove.GetComponent<Glove>();
         Frozen = true;
     }
 
@@ -41,6 +45,7 @@ public class Mass : MonoBehaviour
 
     public void HitBySpring()
     {
+        hasHit = true;
         S.hit();
         rb.velocity = new Vector2(S.SpringPower, 0);
     }
@@ -72,7 +77,10 @@ public class Mass : MonoBehaviour
         }
         if (collision.gameObject.tag == "Spring")
         {
-            HitBySpring();
+            if (hasHit == false)
+            {
+                HitBySpring();
+            }
         }
 
 
@@ -83,6 +91,7 @@ public class Mass : MonoBehaviour
         Frozen = false;
         rb.mass = 1f;
         rb.gravityScale = 1f;
+        G.GrabX();
     }
     public void restart()
     {

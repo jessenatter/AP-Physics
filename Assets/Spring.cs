@@ -47,7 +47,7 @@ public class Spring : MonoBehaviour
 
     public void hit()
     {
-        SpringPower = (1 - transform.localScale.x ) * 10f;
+        SpringPower = (.75f - transform.localScale.x ) * 25f;
         state = State.Hit;
     }
 }
