@@ -20,8 +20,8 @@ public class Glove : MonoBehaviour
     void Update()
     {
         move = spring.transform.position.x + 5.19f;
-        grabbed = (slider.value / 0.35f) * -2f;
-        transform.position = new Vector2(move + grabbed, spring.transform.position.y);
+        grabbed = (slider.value / 0.35f) * -1.7f;
+        transform.position = new Vector2((move + grabbed )-1.61f, spring.transform.position.y - 0.07f);
     }
 }
 
