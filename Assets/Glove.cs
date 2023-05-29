@@ -24,4 +24,10 @@ public class Glove : MonoBehaviour
         move = slider.value / 0.35f * -2;
         transform.position = new Vector2(grabbed + move, transform.position.y);
     }
+
+    public void hit()
+    {
+        transform.position = new Vector2(grabbed, transform.position.y);
+        Debug.Log("hit");
+    }
 }

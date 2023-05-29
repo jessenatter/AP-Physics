@@ -1114,9 +1114,10 @@ GameObject:
   - component: {fileID: 1142725131}
   - component: {fileID: 1142725130}
   - component: {fileID: 1142725132}
+  - component: {fileID: 1142725133}
   m_Layer: 0
   m_Name: Glove
-  m_TagString: Untagged
+  m_TagString: Spring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1201,6 +1202,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2104095173}
+  spring: {fileID: 2067729026}
+--- !u!61 &1142725133
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142725129}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025257826, y: 0.03606832}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 3.2, y: 3.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0381377, y: 1.5408797}
+  m_EdgeRadius: 0
 --- !u!1 &1180468451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,7 +2799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2067729030}
   - component: {fileID: 2067729029}
-  - component: {fileID: 2067729028}
   - component: {fileID: 2067729027}
   m_Layer: 0
   m_Name: Spring
@@ -2794,32 +2821,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 2104095173}
   SpringPower: 0
---- !u!61 &2067729028
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067729026}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 6.404453, y: 0.09041345}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: -0.00072154123, y: 0.5043289}
-    oldSize: {x: 6.4, y: 3.2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.889247, y: 3.21188}
-  m_EdgeRadius: 0
 --- !u!212 &2067729029
 SpriteRenderer:
   m_ObjectHideFlags: 0

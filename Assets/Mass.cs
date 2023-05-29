@@ -91,7 +91,6 @@ public class Mass : MonoBehaviour
         Frozen = false;
         rb.mass = 1f;
         rb.gravityScale = 1f;
-        G.GrabX();
     }
     public void restart()
     {

@@ -49,5 +49,6 @@ public class Spring : MonoBehaviour
     {
         SpringPower = (.75f - transform.localScale.x ) * 25f;
         state = State.Hit;
+        slider.value = 0;
     }
 }
