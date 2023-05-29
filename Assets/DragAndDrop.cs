@@ -7,12 +7,14 @@ public class DragAndDrop : MonoBehaviour
     bool canMove;
     bool dragging;
     public Collider2D ccollider;
+    public SpriteRenderer SR;
+    public bool hovering = false;
+
     void Start()
     {
         //ccollider = GetComponent<Collider2D>();
         canMove = false;
         dragging = false;
-
     }
 
     // Update is called once per frame
@@ -45,6 +47,17 @@ public class DragAndDrop : MonoBehaviour
         {
             canMove = false;
             dragging = false;
+        }
+
+
+        //added stuff 
+        if (ccollider == Physics2D.OverlapPoint(mousePos))
+        {
+            hovering = true;
+        }
+        else
+        {
+            hovering = false;
         }
     }
 }
