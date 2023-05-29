@@ -6,10 +6,10 @@ public class DragAndDrop : MonoBehaviour
 {
     bool canMove;
     bool dragging;
-    Collider2D ccollider;
+    public Collider2D ccollider;
     void Start()
     {
-        ccollider = GetComponent<Collider2D>();
+        //ccollider = GetComponent<Collider2D>();
         canMove = false;
         dragging = false;
 
