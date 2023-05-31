@@ -8,6 +8,7 @@ TagManager:
   - Ramp
   - Pendulum
   - Landing
+  - mouse
   layers:
   - Default
   - TransparentFX

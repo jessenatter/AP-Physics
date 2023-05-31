@@ -4,60 +4,27 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    bool canMove;
-    bool dragging;
-    public Collider2D ccollider;
-    public SpriteRenderer SR;
-    public bool hovering = false;
+    public bool isabove = false;
 
     void Start()
     {
-        //ccollider = GetComponent<Collider2D>();
-        canMove = false;
-        dragging = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "mouse")
         {
-            if (ccollider == Physics2D.OverlapPoint(mousePos))
-            {
-                canMove = true;
-            }
-            else
-            {
-                canMove = false;
-            }
-            if (canMove)
-            {
-                dragging = true;
-            }
-
-
+            isabove = true;
         }
-        if (dragging)
-        {
-            this.transform.position = mousePos;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            canMove = false;
-            dragging = false;
-        }
-
-
-        //added stuff 
-        if (ccollider == Physics2D.OverlapPoint(mousePos))
-        {
-            hovering = true;
-        }
-        else
-        {
-            hovering = false;
-        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isabove = false;
     }
 }
