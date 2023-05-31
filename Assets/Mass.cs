@@ -95,7 +95,7 @@ public class Mass : MonoBehaviour
         }
         if (collision.gameObject.tag == "flag")
         {
-           
+            L.Victory();
         }
 
 

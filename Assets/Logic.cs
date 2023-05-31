@@ -10,6 +10,7 @@ public class Logic : MonoBehaviour
     public Slider S2;
     public Slider S3;
     public GameObject Mass;
+    public GameObject deathscreen;
 
     private Mass mass;
 
@@ -17,6 +18,7 @@ public class Logic : MonoBehaviour
     void Start()
     {
         mass = Mass.GetComponent<Mass>();
+        deathscreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class Logic : MonoBehaviour
 
     public void Reset()
     {
+        deathscreen.SetActive(false);
         mass.Reset();
         S1.value = 0f;
         S2.value = 0f;
@@ -39,7 +42,7 @@ public class Logic : MonoBehaviour
     }
     public void Victory()
     {
-
+        deathscreen.SetActive(true);
     }
     public void Retry()
     {
