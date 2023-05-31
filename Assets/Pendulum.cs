@@ -88,4 +88,8 @@ public class Pendulum : MonoBehaviour
     {
         state = State.Hit;
     }
+    public void reset()
+    {
+        state = State.NotYet;
+    }
 }

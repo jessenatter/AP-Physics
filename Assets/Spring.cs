@@ -51,4 +51,9 @@ public class Spring : MonoBehaviour
         state = State.Hit;
         slider.value = 0;
     }
+
+    public void reset()
+    {
+        state = State.NotYet;
+    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Pendulum
   - Landing
   - mouse
+  - Flag
   layers:
   - Default
   - TransparentFX

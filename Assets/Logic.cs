@@ -11,6 +11,11 @@ public class Logic : MonoBehaviour
     public Slider S3;
     public GameObject Mass;
     public GameObject deathscreen;
+    public GameObject spring;
+    public GameObject pendulum;
+
+    private Pendulum ppendulum;
+    private Spring sspring;
 
     private Mass mass;
 
@@ -19,6 +24,8 @@ public class Logic : MonoBehaviour
     {
         mass = Mass.GetComponent<Mass>();
         deathscreen.SetActive(false);
+        ppendulum = pendulum.GetComponent<Pendulum>();
+        sspring = spring.GetComponent<Spring>();
     }
 
     // Update is called once per frame
@@ -36,6 +43,8 @@ public class Logic : MonoBehaviour
     {
         deathscreen.SetActive(false);
         mass.Reset();
+        sspring.reset();
+        ppendulum.reset();
         S1.value = 0f;
         S2.value = 0f;
         S3.value = 0f;
