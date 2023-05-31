@@ -26,7 +26,9 @@ public class Mass : MonoBehaviour
 
     private bool hasHit;
 
-    private Transform start;
+    private float startX;
+    private float startY;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,8 @@ public class Mass : MonoBehaviour
         G = Glove.GetComponent<Glove>();
         L = Logic.GetComponent<Logic>();
         Frozen = true;
-        start.position = transform.position;
+        startX = transform.position.x;
+        startY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -107,10 +110,10 @@ public class Mass : MonoBehaviour
 
     public void Reset()
     {
-        transform.position = start.position;
+        //reset position
         Frozen = true;
         rb.mass = 0f;
         rb.gravityScale = 0f;
-
+        transform.position = new Vector2(startX, startY);
     }
 }
