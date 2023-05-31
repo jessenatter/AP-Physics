@@ -18,6 +18,10 @@ public class Mass : MonoBehaviour
     public GameObject Spring;
     public GameObject Glove;
 
+    public GameObject Logic;
+
+    private Logic L;
+
     private bool Frozen = true;
 
     private bool hasHit;
@@ -28,6 +32,7 @@ public class Mass : MonoBehaviour
         P = Pendulum.GetComponent<Pendulum>();
         S = Spring.GetComponent<Spring>();
         G = Glove.GetComponent<Glove>();
+        L = Logic.GetComponent<Logic>();
         Frozen = true;
     }
 
@@ -81,6 +86,10 @@ public class Mass : MonoBehaviour
             {
                 HitBySpring();
             }
+        }
+        if (collision.gameObject.tag == "flag")
+        {
+           
         }
 
 

@@ -53,6 +53,7 @@ public class Pendulum : MonoBehaviour
 
             case State.Hit:
 
+
                 transform.rotation = Quaternion.Euler(Vector3.forward * 0);
 
                 break;
@@ -61,6 +62,13 @@ public class Pendulum : MonoBehaviour
 
     public void Release()
     {
+
+        if (Angle == 0)
+        {
+            state = State.Hit;
+            return;
+        }
+
         FinalAngle = Angle;
         
         holding = false;
