@@ -683,9 +683,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1267764699}
-        m_TargetAssemblyTypeName: Mass, Assembly-CSharp
-        m_MethodName: restart
+      - m_Target: {fileID: 1862149192}
+        m_TargetAssemblyTypeName: Logic, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3131,8 +3131,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1267764699}
-        m_TargetAssemblyTypeName: Mass, Assembly-CSharp
+      - m_Target: {fileID: 1862149192}
+        m_TargetAssemblyTypeName: Logic, Assembly-CSharp
         m_MethodName: restart
         m_Mode: 1
         m_Arguments:

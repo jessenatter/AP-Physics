@@ -36,7 +36,7 @@ public class Mass : MonoBehaviour
         G = Glove.GetComponent<Glove>();
         L = Logic.GetComponent<Logic>();
         Frozen = true;
-        transform.position = start.position;
+        start.position = transform.position;
     }
 
     // Update is called once per frame
