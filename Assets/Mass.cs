@@ -25,6 +25,8 @@ public class Mass : MonoBehaviour
     private bool Frozen = true;
 
     private bool hasHit;
+
+    private Transform start;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class Mass : MonoBehaviour
         G = Glove.GetComponent<Glove>();
         L = Logic.GetComponent<Logic>();
         Frozen = true;
+        transform.position = start.position;
     }
 
     // Update is called once per frame
@@ -101,12 +104,13 @@ public class Mass : MonoBehaviour
         rb.mass = 1f;
         rb.gravityScale = 1f;
     }
-    public void restart()
+
+    public void Reset()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void test()
-    {
-        rb.velocity = new Vector2(-6,0);
+        transform.position = start.position;
+        Frozen = true;
+        rb.mass = 0f;
+        rb.gravityScale = 0f;
+
     }
 }
