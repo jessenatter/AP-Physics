@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Mass : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float KEpresent;
     public float PEpresent;
+    public float Senergy;
+    public float Penergy;
+
+    public Text KEt;
+    public Text PEt;
 
     private float MoveByPendulum = 0;
     private Pendulum P;
     private Spring S;
-    private Glove G;
 
     public GameObject Pendulum;
     public GameObject Spring;
     public GameObject Glove;
 
     public GameObject Logic;
+
+    public GameObject ground;
 
     private Logic L;
 
@@ -35,16 +42,26 @@ public class Mass : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         P = Pendulum.GetComponent<Pendulum>();
         S = Spring.GetComponent<Spring>();
-        G = Glove.GetComponent<Glove>();
         L = Logic.GetComponent<Logic>();
         Frozen = true;
         startX = transform.position.x;
         startY = transform.position.y;
+        Senergy = 0f;
+        Penergy = 0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        PEpresent = Mathf.RoundToInt( Mathf.Abs( (ground.transform.position.y - transform.position.y) * 10f ));
+
+        KEpresent = Mathf.RoundToInt(rb.velocity.magnitude * rb.velocity.magnitude * .5f);
+
+
+        KEt.text = KEpresent.ToString();
+        PEt.text = PEpresent.ToString();
+
         if (Frozen == true)
         {
             rb.velocity = new Vector3(0, 0, 0);
@@ -59,6 +76,7 @@ public class Mass : MonoBehaviour
         hasHit = true;
         S.hit();
         rb.velocity = new Vector2(S.SpringPower, 0);
+        Senergy = S.SpringPower;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,6 +91,10 @@ public class Mass : MonoBehaviour
         {
             P.Release();
         }
+        if (collision.gameObject.tag == "wall")
+        {
+//meem
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +106,7 @@ public class Mass : MonoBehaviour
                 MoveByPendulum = P.MoveByPendulum;
                 rb.velocity = new Vector2(MoveByPendulum, 0);
                 P.hit();
+                Penergy = MoveByPendulum;
             }
         }
         if (collision.gameObject.tag == "Spring")
@@ -93,7 +116,7 @@ public class Mass : MonoBehaviour
                 HitBySpring();
             }
         }
-        if (collision.gameObject.tag == "flag")
+        if (collision.gameObject.tag == "Flag")
         {
             L.Victory();
         }
@@ -115,5 +138,6 @@ public class Mass : MonoBehaviour
         rb.mass = 0f;
         rb.gravityScale = 0f;
         transform.position = new Vector2(startX, startY);
+        hasHit = false;
     }
 }

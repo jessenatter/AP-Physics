@@ -12,6 +12,11 @@ public class Pendulum : MonoBehaviour
     private float FinalAngle;
     private float Direction;
     public Slider slider;
+    public float PundulumNRG;
+
+    public float ANGLE;
+
+    public Text text;
 
     private enum State
     {
@@ -30,7 +35,10 @@ public class Pendulum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        text.text = PundulumNRG.ToString();
+
+        ANGLE = transform.rotation.z;
 
         switch (state)
         {
@@ -38,6 +46,7 @@ public class Pendulum : MonoBehaviour
             case State.NotYet:
 
                 transform.rotation = Quaternion.Euler(Vector3.forward * Angle);
+                PundulumNRG = Mathf.RoundToInt( 2f * 10f * ( 2f - (2f * Mathf.Cos(ANGLE))));
 
                 if(holding)
                 {
@@ -91,5 +100,6 @@ public class Pendulum : MonoBehaviour
     public void reset()
     {
         state = State.NotYet;
+        holding = true;
     }
 }

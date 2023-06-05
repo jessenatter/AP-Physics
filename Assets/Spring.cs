@@ -7,6 +7,8 @@ public class Spring : MonoBehaviour
 {
     public Slider slider;
     public float SpringPower;
+    public Text text;
+
 
     private enum State
     {
@@ -20,17 +22,21 @@ public class Spring : MonoBehaviour
     void Start()
     {
         state = State.NotYet;
+        SpringPower = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        text.text = SpringPower.ToString();
+
         switch (state)
         {
             default:
             case State.NotYet:
 
                 transform.localScale = new Vector2(.75f - slider.value, .3f);
+                SpringPower = Mathf.RoundToInt( .5f * (slider.value * slider.value) * 100f);
 
                 break;
 
@@ -47,7 +53,6 @@ public class Spring : MonoBehaviour
 
     public void hit()
     {
-        SpringPower = (.75f - transform.localScale.x ) * 25f;
         state = State.Hit;
         slider.value = 0;
     }
@@ -55,5 +60,6 @@ public class Spring : MonoBehaviour
     public void reset()
     {
         state = State.NotYet;
+        SpringPower = 0f;
     }
 }
