@@ -138,6 +138,7 @@ public class Mass : MonoBehaviour
         rb.mass = 0f;
         rb.gravityScale = 0f;
         transform.position = new Vector2(startX, startY);
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         hasHit = false;
     }
 }
