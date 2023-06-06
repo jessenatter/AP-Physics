@@ -36,6 +36,8 @@ public class Mass : MonoBehaviour
     private float startX;
     private float startY;
 
+    public float fakeV;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +53,15 @@ public class Mass : MonoBehaviour
 
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
         PEpresent = Mathf.RoundToInt( Mathf.Abs( (ground.transform.position.y - transform.position.y) * 10f ));
 
         KEpresent = Mathf.RoundToInt(rb.velocity.magnitude * rb.velocity.magnitude * .5f);
+        
 
 
         KEt.text = KEpresent.ToString();
@@ -67,6 +72,12 @@ public class Mass : MonoBehaviour
             rb.velocity = new Vector3(0, 0, 0);
             rb.mass = 0f;
             rb.gravityScale = 0f;
+        }
+
+
+        if(Input.GetKey("space"))
+        {
+
         }
 
     }
